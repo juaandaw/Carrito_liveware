@@ -948,6 +948,12 @@ select {
     padding-right: 2rem;
   }
 }
+#navigation-menu{
+        height: calc(100vh - 4rem);
+    }
+.navigation-link:hover .navigation-submenu{
+        display: block !important;
+    }
 .fixed {
   position: fixed;
 }
@@ -985,11 +991,11 @@ select {
 .left-4 {
   left: 1rem;
 }
-.top-4 {
-  top: 1rem;
-}
 .top-40 {
   top: 10rem;
+}
+.top-4 {
+  top: 1rem;
 }
 .z-0 {
   z-index: 0;
