@@ -21,4 +21,27 @@ class ExampleTest extends DuskTestCase
                     ->screenshot('example-test');
         });
     }
+    /** @test */
+    public function pressCategoryButtonAndDisplay()
+    {
+        $this->browse(function (Browser $browser){
+           $browser->visit('/')
+               ->assertSee('Categorias')
+           ->clickLink('Categorias')
+           ->screenshot('categorias-test');
+        });
+    }
+
+    /** @test */
+    public function mouseClickOnCategoriesAndSubcategories()
+    {
+        $this->browse(function (Browser $browser){
+            $browser->visit('/')
+                ->assertSee('Categorias')
+                ->clickLink('Categorias')
+                ->mouseover('.hover:text-orange-500')
+                ->assertSee('Celulares y smartphones')
+                ->screenshot('categorias-test');
+        });
+    }
 }
