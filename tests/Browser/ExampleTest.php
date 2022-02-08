@@ -38,9 +38,9 @@ class ExampleTest extends DuskTestCase
         $this->browse(function (Browser $browser){
             $browser->visit('/')
                 ->assertSee('Categorias')
-                ->clickLink('Categorias')
-                ->mouseover('.hover:text-orange-500')
+                ->click('@category-button')
                 ->assertSee('Celulares y smartphones')
+                ->pause(1000)
                 ->screenshot('categorias-test');
         });
     }
