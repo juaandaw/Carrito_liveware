@@ -23,4 +23,9 @@ class Category extends Model
     public function products(){
         return $this->hasManyThrough(Product::class, Subcategory::class); // relaciona una tabla con otra tabla que esta de por medio en este caso categorias y productos subcategorias esta de por medio
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
