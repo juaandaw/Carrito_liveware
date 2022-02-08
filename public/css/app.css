@@ -1216,11 +1216,11 @@ select {
 .w-96 {
   width: 24rem;
 }
-.w-2 {
-  width: 0.5rem;
-}
 .w-56 {
   width: 14rem;
+}
+.w-2 {
+  width: 0.5rem;
 }
 .min-w-0 {
   min-width: 0px;
