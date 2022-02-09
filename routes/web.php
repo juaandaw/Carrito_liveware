@@ -24,3 +24,7 @@ Route::get('products/{product}', [\App\Http\Controllers\ProductsController::clas
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/deletecart',function (){
+    \Cart::destroy();
+});

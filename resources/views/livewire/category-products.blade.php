@@ -18,7 +18,6 @@
                                 <p class="font-bold text-trueGray-700">{{ $product->price }} &euro;</p>
                             </div>
                         </article>
-                        </article>
                     </li>
                 @endforeach
             </ul>
