@@ -28,8 +28,9 @@ class ExampleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser){
            $browser->visit('/')
-               ->assertSee('Categorías')
-           ->screenshot('categorias-test');
+               ->pause(1000)
+               ->assertSeeLink('Categorías')
+           ->screenshot('categoria-test');
         });
     }
 
@@ -38,7 +39,7 @@ class ExampleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser){
             $browser->visit('/')
-                ->assertSee('Categorías')
+                ->assertSeeLink('Categorías')
                 ->click('@category-button')
                 ->assertSee('Celulares y smartphones')
                 ->pause(1000)
