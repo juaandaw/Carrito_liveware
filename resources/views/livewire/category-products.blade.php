@@ -11,8 +11,8 @@
                         </figure>
                             <div class="py-4 px-6">
                                 <h1 class="text-lg font-semibold">
-                                    <a href="">
-                                        {{ Str::limit($product->name, 20) }}
+                                    <a href="{{route('products.show',$product)}}">
+                                        {{ \Illuminate\Support\Str::limit($product->name, 20) }}
                                     </a>
                                 </h1>
                                 <p class="font-bold text-trueGray-700">{{ $product->price }} &euro;</p>
