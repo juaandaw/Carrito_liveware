@@ -8,6 +8,9 @@ class AddCartItemColor extends Component
 {
     public $product;
     public $colors;
+    public $qty = 1;
+    public $quantity = 0;
+    public $color_id = '';
 
     public function mount()
     {
@@ -16,5 +19,19 @@ class AddCartItemColor extends Component
     public function render()
     {
         return view('livewire.add-cart-item-color');
+    }
+
+    public function updatedColorId($value)
+    {
+        $this->quantity = $this->product->colors->find($value)->pivot->quantity; //accedemos a quantity de la tabla pivote
+    }
+
+    public function decrement()
+    {
+        $this->qty--;
+    }
+    public function increment()
+    {
+        $this->qty++;
     }
 }
