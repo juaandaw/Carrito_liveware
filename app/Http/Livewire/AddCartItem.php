@@ -37,6 +37,8 @@ class AddCartItem extends Component
             'weight' => 550,
             'options' => $this->options
         ]);
+        $this->quantity = qty_avaible($this->product->id);
+        $this->reset('qty');
         $this->emitTo('dropdown-cart','render');
     }
 
