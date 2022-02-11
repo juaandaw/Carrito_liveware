@@ -12,6 +12,6 @@ class Image extends Model
     protected $fillable = ['url', 'imageable_id', 'imageable_type'];
     public function imageable()
     {
-        return $this->morphTo();
+        return $this->morphTo(); // relacion que puede tener varios modelos relacionados en una sola tabla, gracias a la relacion y los campos imageable_type guarda el modelo que usa esa imagen y imageable_id almacena el id del producto en cuestion
     }
 }
