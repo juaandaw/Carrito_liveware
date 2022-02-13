@@ -18,7 +18,7 @@
                 <x-jet-input-error for="phone"/>
             </div>
         </div>
-        <div x-data="{envio_type: 1}">
+        <div x-data="{ envio_type: @entangle('envio_type')}">
             <p class="mt-6 mb-3 text-lg text-gray-700 font-semibold">Envíos</p>
             <label class="bg-white rounded-lg shadow px-6 py-4 flex items-center mb-4">
                 <input x-model="envio_type" type="radio" name="envio_type" value="1" class="text-gray-600">
@@ -79,7 +79,11 @@
             </div>
             </div>
         <div>
-            <x-jet-button class="mt-6 mb-4" wire:click="create_order">
+            <x-jet-button
+                class="mt-6 mb-4"
+                wire:loading.attr="disabled"
+                wire:target="create_order"
+                wire:click="create_order">
                 Continuar con la compra
             </x-jet-button>
             <hr>
