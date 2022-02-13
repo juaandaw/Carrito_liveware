@@ -27,10 +27,4 @@ Route::get('search', SearchController::class)->name('search');
 
 Route::get('shopping-cart', ShoppingCart::class)->name('shopping-cart');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::get('/deletecart',function (){
-    \Cart::destroy();
-});
+Route::get('orders/create',\App\Http\Livewire\CreateOrder::class)->middleware('auth')->name('orders.create');
