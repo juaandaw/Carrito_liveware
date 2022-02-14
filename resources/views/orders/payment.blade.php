@@ -95,16 +95,15 @@
             <div id="paypal-button-container"></div>
         </div>
     </div>
-</div>
-    <script src="https://www.paypal.com/sdk/js?client-id={{ config('services.paypal.client_id') }}&currency=EUR"></script>
-
-    <script>
+    @push('scripts')
+        <script src="https://www.paypal.com/sdk/js?client-id={{ config('services.paypal.client_id') }}&currency=EUR"></script>
+        <script>
 paypal.Buttons({
 createOrder: function(data, actions) {
 return actions.order.create({
 purchase_units: [{
 amount: {
-value: '77.44'
+value: "{{$order->total}}"
 }
 }]
 });
@@ -118,5 +117,7 @@ alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee cons
 }
 }).render('#paypal-button-container');
 </script>
+    @endpush
+</div>
 
 </x-app-layout>
