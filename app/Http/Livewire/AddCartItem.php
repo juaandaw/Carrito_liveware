@@ -18,7 +18,7 @@ class AddCartItem extends Component
 
     public function mount() //ciclo de vida se ejecuta al abrir la pagina load c#
     {
-        $this->quantity = $this->product->quantity;
+        $this->quantity = qty_avaible($this->product->id);
         $this->options['image'] = Storage::url($this->product->images->first()->url);
     }
 
