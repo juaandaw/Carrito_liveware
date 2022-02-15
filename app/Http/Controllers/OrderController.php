@@ -11,11 +11,12 @@ class OrderController extends Controller
 
     public function index()
     {
+
         $orders = Order::query()->where('user_id',auth()->user()->id); //preguntar
         if(request('status')){
             $orders->where('status', request('status')); //accedemos a la variable status de la uri para saber cual devolver
         }
-        $orders = $orders->get(); // preguntar lo tenia antes con $orders->get();
+        $orders = $orders->get();
 
         for ($i = 1; $i <= 5; $i++){
             $ordersByStatus[$i] = Order::where('user_id', auth()->user()->id)->where('status',$i)->count();
