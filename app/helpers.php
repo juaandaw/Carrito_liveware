@@ -35,3 +35,18 @@ function qty_added($product_id,$color_id = null,$size_id = null){
 function qty_avaible($product_id,$color_id = null,$size_id = null){
     return quantity($product_id,$color_id,$size_id) - qty_added($product_id,$color_id,$size_id);
 }
+
+function discount($item){
+    $product = Product::find($item->id);
+    $qty_avaible = qty_avaible($item->id, $item->options->color_id, $item->options->size_id);
+
+    if($item->options->size_id){
+        $size = Size::find($item->options->size_id);
+        $size->colors()->detach($item->options->color_id);
+        $size->colors()->attach([
+            $item->options->color_id => ['quantity' => $qty_avaible]
+        ]);
+    }elseif($item->options->color_id) {
+
+    }
+}
