@@ -10,6 +10,8 @@ class OrderController extends Controller
 {
     public function show(Order $order)
     {
+        $this->authorize('view',$order);
+
         $items = Cart::content();
         return view('orders.show',compact('order','items'));
     }
