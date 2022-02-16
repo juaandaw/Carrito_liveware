@@ -47,6 +47,12 @@ function discount($item){
             $item->options->color_id => ['quantity' => $qty_avaible]
         ]);
     }elseif($item->options->color_id) {
-
+         $product->colors()->detach($item->options->color_id);
+         $product->colors()->attach([
+             $item->options->color_id => ['quantity' => $qty_avaible]
+         ]);
+    } else {
+        $product->quantity = $qty_avaible;
+        $product->save();
     }
 }
