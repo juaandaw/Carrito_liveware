@@ -15,6 +15,16 @@ class CreateProduct extends Component
     public $category_id = '',$subcategory_id = '', $brand_id ='';
     public $name,$slug,$description, $price,$quantity;
 
+    protected $rules = [
+        'category_id' => 'required',
+        'subcategory_id' => 'required',
+        'name' => 'required',
+        'slug' => 'required|unique:products',
+        'description' => 'required',
+        'brand_id' => 'required',
+        'price' => 'required',
+    ];
+
     public function mount()
     {
         $this->categories = Category::all();
@@ -23,6 +33,14 @@ class CreateProduct extends Component
     public function updatedName($value)
     {
         $this->slug = Str::slug($value);
+    }
+
+    public function save()
+    {
+        if($this->subcategory_id && !$this->subcategory->color && !$this->subcategory->size) {
+            $this->rules['quantity'] = 'required';
+        }
+        $this->validate();
     }
 
     public function updatedCategoryId($value)
@@ -34,7 +52,7 @@ class CreateProduct extends Component
         $this->reset(['subcategory_id','brand_id']);
     }
 
-    public function getSubcategoryProperty() // propiedad computada
+    public function getSubcategoryProperty() // propiedad computada al realizar $this->subcategory, nos devuelve el valor del return
     {
         return Subcategory::find($this->subcategory_id);
     }
