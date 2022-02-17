@@ -3,13 +3,13 @@
     <div class="grid grid-cols-2">
         <div>
             <x-jet-label value="Categorias"/>
-            <select class="w-full form-control" wire:model="product.category_id">
+            <select class="w-full form-control" wire:model="category_id">
                 <option value="" selected disabled>Seleccione una categoria</option>
                 @foreach($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
-            <x-jet-input-error for="product.category_id"/>
+            <x-jet-input-error for="category_id"/>
         </div>
         <div>
             <x-jet-label value="Subcategorías" />
@@ -52,7 +52,7 @@
                       x-init="ClassicEditor.create($refs.miEditor)
 .then(function(editor){
 editor.model.document.on('change:data', () => {
-@this.set('description', editor.getData())
+@this.set('product.description', editor.getData())
 })
 })
 .catch( error => {
@@ -84,7 +84,7 @@ console.error( error );
             <x-jet-input-error for="product.price"/>
         </div>
 
-        @if(!$this->subcategory->color && !$this->subcategory->size)
+        @if($this->subcategory && !$this->subcategory->color && !$this->subcategory->size)
             <div>
                 <x-jet-label value="Cantidad"/>
                 <x-jet-input
