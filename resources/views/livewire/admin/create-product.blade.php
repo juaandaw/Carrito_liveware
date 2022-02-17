@@ -58,8 +58,8 @@ console.error( error );
 </textarea>
         </div>
     </div>
-
-    <div class="mb-4">
+<div class="grid grid-cols-2 gap-6 mb-4">
+    <div>
         <x-jet-label value="Marca" />
         <select class="form-control w-full" wire:model="brand_id">
             <option value="" selected disabled>Seleccione una marca</option>
@@ -67,5 +67,25 @@ console.error( error );
                 <option value="{{$brand->id}}">{{$brand->name}}</option>
             @endforeach
         </select>
-    </div>
+        </div>
+    <div>
+            <x-jet-label value="Precio" />
+            <x-jet-input
+                wire:model="price"
+                type="number"
+                class="w-full"
+                step=".01" />
+        </div>
+
+    @if($subcategory_id && !$this->subcategory->color && !$this->subcategory->size)
+        <div>
+            <x-jet-label value="Cantidad"/>
+            <x-jet-input
+                wire:model="quantity"
+                type="number"
+                class="w-full"/>
+        </div>
+        @endif
+</div>
+
 </div>
