@@ -10,6 +10,7 @@ use Livewire\Component;
 
 class ColorProduct extends Component
 {
+    protected $listeners = ['delete'];
     public $product, $colors;
     public $open = false;
     public $pivot,$pivot_color_id,$pivot_quantity;
@@ -57,6 +58,12 @@ class ColorProduct extends Component
         $this->product = $this->product->fresh();
 
         $this->open = false;
+    }
+
+    public function delete(TbPivot $pivot)
+    {
+        $pivot->delete();
+        $this->product = $this->product->fresh();
     }
     public function render()
     {
