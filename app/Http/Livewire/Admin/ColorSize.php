@@ -9,6 +9,7 @@ use Livewire\Component;
 class ColorSize extends Component
 {
     public $size,$colors;
+    protected $listeners = ['delete'];
     public $color_id,$quantity;
     protected $rules = [
         'color_id' => 'required',
@@ -50,6 +51,12 @@ class ColorSize extends Component
 
         $this->size = $this->size->fresh();
         $this->open = false;
+    }
+
+    public function delete(TbPivot $pivot)
+    {
+        $pivot->delete();
+        $this->size = $this->size->fresh();
     }
     public function render()
     {

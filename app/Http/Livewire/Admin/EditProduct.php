@@ -75,6 +75,9 @@ class EditProduct extends Component
 
         $this->product->save();
 
+        $saludo = "dimehola";
+        dd($saludo);
+
         $this->emit('saved');
     }
     public function render() // alfinal del ciclo de vida se ejecuta esto;
