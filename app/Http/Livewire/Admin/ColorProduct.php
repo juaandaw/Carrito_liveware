@@ -10,6 +10,7 @@ use Livewire\Component;
 class ColorProduct extends Component
 {
     public $product, $colors;
+    public $open = false;
     public $color_id,$quantity;
     public $rules = [
       'color_id' => 'required',
@@ -33,9 +34,13 @@ class ColorProduct extends Component
 
         $this->reset(['color_id','quantity']);
         $this->emit('saved');
+
+        $this->product = $this->product->fresh();
     }
     public function render()
     {
-        return view('livewire.admin.color-product');
+        $productColors = $this->product->colors;
+
+        return view('livewire.admin.color-product',compact('productColors'));
     }
 }
