@@ -17,6 +17,8 @@ class EditProduct extends Component
     public $product,$categories,$subcategories,$brands;
     public $category_id;
 
+    protected $listeners = ['refreshProduct'];
+
     protected $rules = [
         'category_id' => 'required',
         'product.subcategory_id' => 'required',
@@ -72,6 +74,11 @@ class EditProduct extends Component
         $this->product->brand_id = "";
     }
 
+    public function refreshProduct()
+    {
+        $this->product = $this->product->fresh();
+    }
+
     public function save()
     {
         $this->rules['product.slug'] = 'required|unique:products,slug,' . $this->product->id;
@@ -84,9 +91,6 @@ class EditProduct extends Component
         $this->validate();
 
         $this->product->save();
-
-        $saludo = "dimehola";
-        dd($saludo);
 
         $this->emit('saved');
     }
