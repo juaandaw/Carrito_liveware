@@ -25,7 +25,8 @@
                     <span class="text-xl font-medium">{{$size->name}}</span>
 
                     <div class="ml-auto">
-                        <x-jet-button wire:click="edit({{$size->id}})" wire:loading.attr="disabled" wire:target="edit({{$size->id}})">
+                        <x-jet-button wire:click="edit({{ $size->id }})" wire:loading.attr="disabled"
+                                      wire:target="edit({{ $size->id }})">
                             <i class="fas fa-edit"></i>
                         </x-jet-button>
 
@@ -34,7 +35,7 @@
                         </x-jet-danger-button>
                     </div>
                 </div>
-                @livewire('admin.color-size',['size' => $size],key('color-size-',$size->id))
+                @livewire('admin.color-size',['size' => $size],key('color-size-' . $size->id))
             </li>
         @endforeach
     </ul>
@@ -85,5 +86,12 @@ Swal.fire(
 }
 })
 })
+Livewire.on('errorSize', mensaje => {
+Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: mensaje,
+}) /* */
+});
 </script>
 @endpush
