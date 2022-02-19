@@ -17,7 +17,7 @@ class CategoryFilter extends Component
 
     public function render()
     {
-        $productsQuery = Product::query()->whereHas('subcategory.category',function (Builder $query){
+        $productsQuery = Product::query()->whereHas('subcategory.categories',function (Builder $query){
             $query->where('id',$this->category->id);
         });
         if($this->subcategoria) {

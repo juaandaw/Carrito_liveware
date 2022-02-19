@@ -4,6 +4,6 @@
             <img class="w-full h-80 object-cover object-center" src="{{\Illuminate\Support\Facades\Storage::url($category->image)}}" alt="">
         </figure>
 
-        @livewire('category-filter', ['category' => $category])
+        @livewire('categories-filter', ['categories' => $category])
     </div>
 </x-app-layout>

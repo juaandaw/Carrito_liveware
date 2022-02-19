@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', WelcomeController::class);
 
-Route::get('categories/{category}',[CategoryController::class,'show'])->name('categories.show');
+Route::get('categories/{categories}',[CategoryController::class,'show'])->name('categories.show');
 
 Route::get('products/{product}', [\App\Http\Controllers\ProductsController::class,'show'])->name('products.show');
 
