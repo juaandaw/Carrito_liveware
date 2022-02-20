@@ -12,18 +12,21 @@ class CategoryFilter extends Component
     use WithPagination;
 
     public $category, $subcategoria, $marca;
+    public $queryString = ['subcategoria','marca'];
 
     public $view = 'grid';
 
     public function render()
     {
-        $productsQuery = Product::query()->whereHas('subcategory.categories',function (Builder $query){
+        $productsQuery = Product::query()->whereHas('subcategory.category',function (Builder $query){
             $query->where('id',$this->category->id);
         });
+
         if($this->subcategoria) {
             $productsQuery = $productsQuery->whereHas('subcategory', function (Builder $query){
                 $query->where('name',$this->subcategoria);
             });
+
         }
         if($this->marca) {
             $productsQuery = $productsQuery->whereHas('brand',function (Builder $query){
