@@ -158,15 +158,15 @@
                     <x-jet-label>
                         Imagen
                     </x-jet-label>
-                    <input wire:model="editImage" accept="image/*" type="file" class="mt-1" name="" id="{{$image}}">
+                    <input wire:model="editImage" accept="image/*" type="file" class="mt-1" name="" id="{{$image2}}">
                     <x-jet-input-error for="editImage" />
                 </div>
             </div>
         </x-slot>
         <x-slot name="footer">
-            <x-jet-danget-button wire:click="update" wire:loading.attr="disabled" wire:target="editImage,update">
+            <x-jet-danger-button wire:click="update" wire:loading.attr="disabled" wire:target="editImage,update">
                 Actualizar
-            </x-jet-danget-button>
+            </x-jet-danger-button>
         </x-slot>
     </x-jet-dialog-modal>
 </div>
