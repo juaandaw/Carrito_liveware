@@ -2589,12 +2589,24 @@ select {
     margin-top: 0px;
   }
 
+  .md\:mt-auto {
+    margin-top: auto;
+  }
+
   .md\:block {
     display: block;
   }
 
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:grid {
     display: grid;
+  }
+
+  .md\:w-56 {
+    width: 14rem;
   }
 
   .md\:grid-cols-3 {
@@ -2630,6 +2642,10 @@ select {
   .lg\:-mx-8 {
     margin-left: -2rem;
     margin-right: -2rem;
+  }
+
+  .lg\:flex {
+    display: flex;
   }
 
   .lg\:grid-cols-5 {
