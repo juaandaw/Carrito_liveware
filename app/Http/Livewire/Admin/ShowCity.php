@@ -49,11 +49,16 @@ class ShowCity extends Component
         $this->emit('saved');
     }
 
-    public function edit()
+    public function edit(District $district)
+    {
+        $this->district = $district;
+        $this->editForm['open'] = true;
+        $this->editForm['name'] = $district->name;
+    }
+    public function update()
     {
         $this->district->name = $this->editForm['name'];
         $this->district->save();
-
         $this->reset('editForm');
         $this->getDistricts();
     }
