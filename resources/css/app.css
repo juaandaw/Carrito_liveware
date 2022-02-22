@@ -1,3 +1,4 @@
+@import "dropzone.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,3 +17,4 @@
         shadow-sm;
     }
 }
+
