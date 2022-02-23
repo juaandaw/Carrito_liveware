@@ -25,7 +25,7 @@
                 </p>
                 <p class="uppercase text-center">Entregado</p>
                 <p class="text-center text-2xl mt-2">
-                    <i class="fas fa-check-circle"></i>
+                    <i class="fa fa-check-circle"></i>
                 </p>
             </a>
             <a href="{{ route('admin.orders.index') . '?status=5' }}" class="bg-green-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
@@ -34,7 +34,7 @@
                 </p>
                 <p class="uppercase text-center">Anulado</p>
                 <p class="text-center text-2xl mt-2">
-                    <i class="fas fa-times-circle"></i>
+                    <i class="fa fa-times-circle"></i>
                 </p>
             </a>
         </section>

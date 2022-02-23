@@ -5,6 +5,7 @@
 
     @push('scripts')
         <script>
+
 Livewire.on('deleteCategory', categorySlug => {
 Swal.fire({
 title: 'Are you sure?',

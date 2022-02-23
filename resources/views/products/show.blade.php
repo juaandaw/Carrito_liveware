@@ -51,10 +51,12 @@
 
     @push('scripts')
         <script>
-            $(document).ready(function() {
-                $('.flexslider').flexslider({
-                   animation: "slide",
-                   controlNav: "thumbnails"
+            document.addEventListener("DOMContentLoaded", (event) => {
+                $(document).ready(function () {
+                    $('.flexslider').flexslider({
+                        animation: "slide",
+                        controlNav: "thumbnails"
+                    });
                 });
             });
         </script>
