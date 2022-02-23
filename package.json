@@ -14,22 +14,22 @@
         "@tailwindcss/typography": "^0.5.0",
         "alpinejs": "^3.0.6",
         "axios": "^0.21",
+        "jquery": "^3.6.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "postcss-import": "^14.0.1",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.49.8",
+        "sass-loader": "^12.6.0",
         "sweetalert2": "^11.4.4",
         "tailwindcss": "^3.0.0"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-build-classic": "^32.0.0",
+        "@ckeditor/ckeditor5-build-classic": "^31.0.0",
         "@fortawesome/fontawesome-free": "^6.0.0",
         "dropzone": "^5.9.3",
         "flexslider": "^2.7.2",
-        "glider-js": "^1.7.7",
-        "jquery": "^3.6.0",
-        "resolve-url-loader": "^5.0.0",
-        "sass": "^1.49.8",
-        "sass-loader": "^12.6.0"
+        "glider-js": "^1.7.7"
     }
 }

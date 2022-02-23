@@ -178,6 +178,7 @@ document.addEventListener("DOMContentLoaded", (event) =>{
         }
     };
 })
+
 Livewire.on('deleteProduct', () => {
     Swal.fire({
         title: 'Are you sure?',

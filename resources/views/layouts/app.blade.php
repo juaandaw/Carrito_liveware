@@ -17,7 +17,6 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="{{asset('vendor/flex-slider/node_modules/jquery/dist/jquery.js')}}"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner/>
