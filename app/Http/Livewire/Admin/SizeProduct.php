@@ -9,7 +9,7 @@ class SizeProduct extends Component
 {
     public $product,$name;
     public $open = false;
-    public $name_edit;
+    public $name_edit,$size;
     protected $listeners = ['delete'];
     public $rules = [
         'name' => 'required'

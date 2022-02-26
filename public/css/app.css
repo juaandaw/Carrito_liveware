@@ -12372,9 +12372,6 @@ select {
 .mr-1 {
   margin-right: 0.25rem;
 }
-.mt-auto {
-  margin-top: auto;
-}
 .mt-0\.5 {
   margin-top: 0.125rem;
 }
@@ -12518,9 +12515,6 @@ select {
 }
 .w-96 {
   width: 24rem;
-}
-.w-56 {
-  width: 14rem;
 }
 .w-32 {
   width: 8rem;
@@ -13047,6 +13041,9 @@ select {
 }
 .pt-8 {
   padding-top: 2rem;
+}
+.pl-16 {
+  padding-left: 4rem;
 }
 .pr-2 {
   padding-right: 0.5rem;
