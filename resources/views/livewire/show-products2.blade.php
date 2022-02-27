@@ -14,17 +14,11 @@
         <div class="px-6 py-4">
             <x-jet-input class="w-full" wire:model="search" type="text" placeholder="Introduzca el nombre del producto a buscar"/>
         </div>
-        <div class="flex items-center">
-            <select class="form-control" wire:model="page">
-                <option value="">{{$products->currentPage()}}</option>
-                @foreach(['25','50','75','100'] as $page)
-                    <option value="{{$products->url($page)}}">{{$page}}</option>
-                @endforeach
-            </select>
-            <select class="form-control ml-auto" name="" id="">
-                <option value="">random</option>
-            </select>
-        </div>
+        <select wire:model="per_page">
+            @foreach([10,20,30,50] as $per_page)
+                <option value="{{$per_page}}">{{$per_page}}</option>
+            @endforeach
+        </select>
         @if($products->count())
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -73,9 +67,15 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             @if($product->subcategory->size && $product->subcategory->color)
-                                    @livewire('admin.size-color-column',['product' => $product])
+                                 @foreach($product->sizes as $size)
+                                     @foreach($size->colors as $color)
+                                         {{$color->name}}
+                                     @endforeach
+                                 @endforeach
                             @elseif($product->subcategory->color)
-                            @livewire('admin.color-column',['product' => $product])
+                            @foreach($product->colors as $colors)
+                                {{$colors->name}}
+                            @endforeach
                             @else
                             No tiene color
                             @endif

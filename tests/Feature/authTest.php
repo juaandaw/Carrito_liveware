@@ -13,10 +13,12 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class authTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *
@@ -40,10 +42,13 @@ class authTest extends TestCase
             'imageable_id' => $productA->id,
             'imageable_type' => Product::class
         ]);
+        $role = Role::create(['name' => 'admin']);
+        $user = User::factory()->create()->assignRole('admin');
 
-        $this->get('/')
-            ->assertStatus(200)
-        ->assertSee($productA->name);
+        Livewire::actingAs($user)->test('show-products2',['product',$productA])
+        ->assertSeeLivewire('leche');
+
+        $this->get('/admin/products2');
 
         $this->actingAs(User::factory()->create());
     }
