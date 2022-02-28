@@ -15,9 +15,15 @@ class ShowProducts2 extends Component
     use WithPagination;
     public $search;
     public $per_page;
+    public $product;
+    public $category_id;
+    public $subcategory_id;
     public $mostrar = false;
+    public $mostrarFi = false;
     public $columnas = ['Nombre','Categoria','Subcategoria','Marca','Fecha de creacion','Color','Stock','Estado','Precio'];
     public $columnaCheck = [];
+    protected $listeners = ['filters'];
+
 
     public function mount()
     {
@@ -38,8 +44,19 @@ class ShowProducts2 extends Component
 
     }
 
+    public function mostrarFiltro()
+    {
+        $this->mostrarFi = true;
+    }
+
     public function updatingPerPage()
     {
         $this->resetPage();
+    }
+
+    public function filters($c = null,$s = null )
+    {
+       $this->category_id = $c;
+       $this->subcategory_id = [$s];
     }
 }
