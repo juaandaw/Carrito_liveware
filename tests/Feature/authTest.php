@@ -27,7 +27,7 @@ class authTest extends TestCase
      */
 
     /** @test */
-    function its_shows_the_welcome_view()
+    function its_shows_the_welcome_view() // preguntar
     {
         $brand = Brand::factory()->create();
         $category = Category::factory()->create();

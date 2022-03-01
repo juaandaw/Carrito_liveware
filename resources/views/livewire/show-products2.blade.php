@@ -1,4 +1,4 @@
-<div>
+<div x-data="{open:false}">
     <x-slot name="header">
         <div class="flex items-center">
             <h2 class="font-semibold text-xl text-gray-600">
@@ -10,17 +10,24 @@
             </x-button-link>
         </div>
     </x-slot>
+    <div>
+        <div class="flex justify-center py-12" x-show="open">
+            <div class="grid grid-cols-6">
+                @foreach($columnas as $columna)
+                    <label for="{{$columna}}">{{$columna}}</label>
+                    <input type="checkbox" value="{{$columna}}" wire:model="columnaCheck">
+                @endforeach
+            </div>
+        </div>
+    </div>
     <x-table-responsive>
         <div class="px-6 py-4">
             <x-jet-input class="w-full" wire:model="search" type="text" placeholder="Introduzca el nombre del producto a buscar"/>
         </div>
 <div>
-    @livewire('show-filters')
+    @livewire('show-filters',['search' => $search])
 </div>
-        <div class="flex justify-center">
-            <x-jet-button class="" wire:click="mostrarOcultar()">Mostrar/Ocultar</x-jet-button>
-        </div>
-
+        <x-jet-button @click="open = true">Mostrar/Ocultar</x-jet-button>
         <select wire:model="per_page">
             @foreach([10,20,30,50] as $per_page)
                 <option value="{{$per_page}}">{{$per_page}}</option>
@@ -87,8 +94,13 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     @if($product->subcategory->size && $product->subcategory->color)
                                         @foreach($product->sizes as $size)
+                                            <div class="font-bold">
+                                            {{$size->name}}
+                                            </div>
                                             @foreach($size->colors as $color)
-                                                {{$color->name}}
+                                                <div>
+                                                    {{__(ucfirst($color->name))}}
+                                                </div>
                                             @endforeach
                                         @endforeach
                                     @elseif($product->subcategory->color)
@@ -133,27 +145,5 @@
             </div>
         @endif
     </x-table-responsive>
-
-    <x-jet-dialog-modal wire:model="mostrar">
-        <x-slot name="title">
-            Mostrar/Ocultar Columnas
-        </x-slot>
-        <x-slot name="content">
-            <div class="flex justify-center">
-                <div>
-                    @foreach($columnas as $columna)
-                        <div class="form-check">
-                            <input wire:model="columnaCheck" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="{{$columna}}" id="flexCheckChecked">
-                            <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
-                                {{$columna}}
-                            </label>
-                    @endforeach
-                    </div>
-                </div>
-            </div>
-        </x-slot>
-        <x-slot name="footer">
-        </x-slot>
-    </x-jet-dialog-modal>
 </div>
 

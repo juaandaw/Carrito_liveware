@@ -1,6 +1,7 @@
 @import "dropzone.css";
 @import "glider.css";
 @import "flexslider.css";
+@import "pikaday.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

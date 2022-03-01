@@ -26,5 +26,7 @@ window.jQuery = jquery;
 /** flexslider */
 import flexslider from 'flexslider';
 
+/** piakday */
+window.Pikaday = require("pikaday");
 
 

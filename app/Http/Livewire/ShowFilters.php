@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class ShowFilters extends Component
 {
@@ -14,7 +17,14 @@ class ShowFilters extends Component
     public $categorias;
     public $selCategoria;
     public $subcategoria;
+    public $brands;
+    public $colors;
     public $subcategory_id = [];
+    public $color_id;
+    public $brand_id;
+    public $search;
+
+
 
     public function render()
     {
@@ -24,6 +34,8 @@ class ShowFilters extends Component
     public function mount()
     {
         $this->categorias = Category::all();
+        $this->brands = Brand::all();
+        $this->colors = Color::all();
     }
 
     public function mostrar()
@@ -34,22 +46,32 @@ class ShowFilters extends Component
     public function updatedselCategoria()
     {
         $this->subcategoria = Subcategory::where('category_id',$this->selCategoria)->get();
-        $this->Filters();
     }
 
     public function updatedsubcategoryid()
     {
-        $this->Filters();
+
     }
 
-    public function Filters()
+    public function updatedbrandid()
     {
-        if ($this->selCategoria && $this->subcategory_id){
-            $this->emit('filters',$this->selCategoria,$this->subcategory_id);
-        }else {
-            if($this->selCategoria){
-                $this->emit('filters',$this->selCategoria);
-            }
+    }
+
+    public function filters()
+    {
+
+        if($this->selCategoria == "Elige una categoria"){
+            $this->selCategoria = null;
+        }elseif($this->brand_id == "Elige una marca"){
+            $this->brand_id = null;
+        }elseif($this->color_id == "Elige un color"){
+            $this->color_id = null;
         }
+
+        $this->emitTo('show-products2','filters',$this->selCategoria,
+            $this->subcategory_id,
+            $this->brand_id,
+            $this->color_id);
+
     }
 }
