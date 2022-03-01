@@ -1,11 +1,6 @@
 <div>
-    <x-jet-button class="" wire:click="mostrarOcultar()">Mostrar/Ocultar</x-jet-button>
+<x-jet-button class="" wire:click="mostrarOcultar()">Mostrar/Ocultar</x-jet-button>
 
-    <x-jet-dialog-modal wire:model="mostrar">
-        <x-slot name="title">
-            Mostrar/Ocultar Columnas
-        </x-slot>
-        <x-slot name="content">
             <div class="flex justify-center">
                 <div>
                     @foreach($columnas as $columna)
@@ -18,8 +13,4 @@
                         </div>
                 </div>
             </div>
-        </x-slot>
-        <x-slot name="footer">
-        </x-slot>
-    </x-jet-dialog-modal>
 </div>

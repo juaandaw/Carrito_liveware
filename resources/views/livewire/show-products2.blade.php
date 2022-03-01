@@ -14,17 +14,18 @@
         <div class="px-6 py-4">
             <x-jet-input class="w-full" wire:model="search" type="text" placeholder="Introduzca el nombre del producto a buscar"/>
         </div>
-        <div class="flex justify-between">
+<div>
+    @livewire('show-filters')
+</div>
+        <div class="flex justify-center">
+            <x-jet-button class="" wire:click="mostrarOcultar()">Mostrar/Ocultar</x-jet-button>
+        </div>
+
         <select wire:model="per_page">
             @foreach([10,20,30,50] as $per_page)
                 <option value="{{$per_page}}">{{$per_page}}</option>
             @endforeach
         </select>
-            <x-jet-button class="" wire:click="mostrarOcultar()">Mostrar/Ocultar</x-jet-button>
-
-            @livewire('show-filters',['open' => $mostrarFi])
-
-        </div>
 
         @if($products->count())
             <table class="min-w-full divide-y divide-gray-200">

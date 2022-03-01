@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Http\Controllers\WelcomeController;
 use App\Http\Livewire\CategoryProducts;
+use App\Http\Livewire\ShowProducts2;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Image;
@@ -45,8 +46,8 @@ class authTest extends TestCase
         $role = Role::create(['name' => 'admin']);
         $user = User::factory()->create()->assignRole('admin');
 
-        Livewire::actingAs($user)->test('show-products2',['product',$productA])
-        ->assertSeeLivewire('leche');
+        Livewire::actingAs($user)->test(ShowProducts2::class,['product',$productA])
+        ->assertSee($productA->name);
 
         $this->get('/admin/products2');
 
