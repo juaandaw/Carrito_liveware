@@ -50,8 +50,6 @@ class authTest extends TestCase
         ->assertSee($productA->name);
 
         $this->get('/admin/products2');
-
-        $this->actingAs(User::factory()->create());
     }
 
     /** @test */

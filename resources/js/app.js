@@ -7,7 +7,19 @@ window.Alpine = Alpine;
 Alpine.start();
 
 /**CKEDITOR 5 */
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic/build/ckeditor';
+var ready = (callback) => {
+    if (document.readyState != "loading") callback();
+    else document.addEventListener("DOMContentLoaded", callback);
+}
 
+ready(() => {
+    ClassicEditor
+        .create(document.querySelector('#ckeditor'))
+        .catch(error => {
+            console.log(`error`, error)
+        });
+});
 /**DROPZONE */
 import  Dropzone  from "dropzone/src/dropzone";
 window.Dropzone = Dropzone;

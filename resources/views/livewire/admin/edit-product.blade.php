@@ -91,6 +91,7 @@
             <textarea class="w-full form-control" rows="4"
                       wire:model="product.description"
                       x-data
+                      id="ckeditor"
                       x-init="ClassicEditor.create($refs.miEditor)
 .then(function(editor){
 editor.model.document.on('change:data', () => {
