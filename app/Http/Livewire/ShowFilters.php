@@ -20,14 +20,29 @@ class ShowFilters extends Component
     public $brands;
     public $colors;
     public $subcategory_id = [];
+    public $priceFrom;
+    public $priceTo;
+    public $to;
+    public $from;
     public $color_id;
     public $brand_id;
     public $search;
+    protected $rules = [
+        'selCategoria' => 'filled',
+        'subcategory_id' => 'filled',
+        'brand_id' => 'filled',
+        'color_id' => 'filled',
+        'priceFrom' => 'filled',
+        'priceTo' => 'filled',
+        'from' => 'filled',
+        'to' => 'filled',
+    ];
 
 
 
     public function render()
     {
+
         return view('livewire.show-filters');
     }
 
@@ -48,15 +63,6 @@ class ShowFilters extends Component
         $this->subcategoria = Subcategory::where('category_id',$this->selCategoria)->get();
     }
 
-    public function updatedsubcategoryid()
-    {
-
-    }
-
-    public function updatedbrandid()
-    {
-    }
-
     public function filters()
     {
 
@@ -67,11 +73,17 @@ class ShowFilters extends Component
         }elseif($this->color_id == "Elige un color"){
             $this->color_id = null;
         }
+        $this->validate();
+
 
         $this->emitTo('show-products2','filters',$this->selCategoria,
             $this->subcategory_id,
             $this->brand_id,
-            $this->color_id);
+            $this->color_id,
+            $this->priceFrom,
+            $this->priceTo,
+            $this->from,
+            $this->to);
 
     }
 }

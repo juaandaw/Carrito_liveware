@@ -4,32 +4,34 @@
         Categorias
         <div>
             <select wire:model="selCategoria">
-                <option>Elige una categoria</option>
+                <option value="all" selected>Elige una categoria</option>
                 @foreach($categorias as $categoria)
                     <option value="{{$categoria->id}}">{{$categoria->name}}</option>
                 @endforeach
             </select>
             <select wire:model="brand_id">
-                <option>Elige una marca</option>
+                <option value="all" selected>Elige una marca</option>
                 @foreach($brands as $brand)
                     <option value="{{$brand->id}}">{{$brand->name}}</option>
                 @endforeach
             </select>
             <select wire:model="color_id">
-                <option>Elige un color</option>
+                <option value="all" selected>Elige un color</option>
                 @foreach($colors as $color)
                     <option value="{{$color->id}}">{{__(ucfirst($color->name))}}</option>
                 @endforeach
             </select>
         </div>
-        <label for="desde">Precio Desde €</label>
-        <input class="w-32" type="text" value="">
-        <label for="hasta">Precio Hasta €</label>
-        <input class="w-32" type="text" value="">
-        <label for="desde">Desde</label>
-        <input  class="w-32" type="text" id="datepicker" placeholder="D-M-YYYY">
-        <label for="hasta">Hasta</label>
-        <input  class="w-32" type="text" id="datepicker2" placeholder="D-M-YYYY">
+        <label  for="desde">Precio Desde €</label>
+        <input  class="w-32" type="text" value="">
+        <label wire:model="priceFrom" for="hasta">Precio Hasta €</label>
+        <input wire:model="priceTo" class="w-32" type="text" value="">
+        <div wire:ignore>
+            <label for="desde">Desde</label>
+            <input   wire:model="from" class="w-32 datepicker" type="text" placeholder="YYYY-M-D">
+            <label for="hasta">Hasta</label>
+            <input id="date" wire:model="to"  class="w-32 datepicker" type="text" placeholder="YYYY-M-D">
+        </div>
         <x-jet-button wire:click="filters">Filtrar</x-jet-button>
 
     </div>
@@ -48,10 +50,14 @@
         </div>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", (event) => {
-        var picker = new Pikaday({field: $('#datepicker')[0],
-                                    format:'D-M-YYYY'});
-        var picker2 = new Pikaday({field: $('#datepicker2')[0],
-                                    format:'D-M-YYYY'});
-    })
+    document.addEventListener("DOMContentLoaded", () => {
+        flatpickr('.datepicker', {
+            enableTime: false,
+            dateFormat: 'Y-m-d',
+            altInput: true,
+            altFormat: 'Y-m-d',
+            time_24hr: true,
+            allowInput: true,
+        });
+    });
 </script>

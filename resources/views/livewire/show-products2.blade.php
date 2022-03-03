@@ -25,7 +25,7 @@
             <x-jet-input class="w-full" wire:model="search" type="text" placeholder="Introduzca el nombre del producto a buscar"/>
         </div>
 <div>
-    @livewire('show-filters',['search' => $search])
+    @livewire('show-filters')
 </div>
         <x-jet-button @click="open = true">Mostrar/Ocultar</x-jet-button>
         <select wire:model="per_page">

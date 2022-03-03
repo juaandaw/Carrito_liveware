@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\ProductQuery;
+use App\QueryFilter;
 
 class Product extends Model
 {
@@ -15,6 +17,16 @@ class Product extends Model
 
     const BORRADOR = 1;
     const PUBLICADO = 2;
+
+    public function newEloquentBuilder($query)
+    {
+        return new ProductQuery($query);
+    }
+
+    public function scopeFilterBy($query, QueryFilter $filters, array $data)
+    {
+        return $filters->applyto($query, $data);
+    }
 
     public function sizes()
     {
