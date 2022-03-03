@@ -11,7 +11,7 @@
         </div>
     </x-slot>
     <div>
-        <div class="flex justify-center py-12" x-show="open">
+        <div class="flex justify-center py-12" x-show="open" x-cloak>
             <div class="grid grid-cols-6">
                 @foreach($columnas as $columna)
                     <label for="{{$columna}}">{{$columna}}</label>
@@ -25,7 +25,7 @@
             <x-jet-input class="w-full" wire:model="search" type="text" placeholder="Introduzca el nombre del producto a buscar"/>
         </div>
 <div>
-    @livewire('show-filters')
+    @include('compartido._filters')
 </div>
         <x-jet-button @click="open = true">Mostrar/Ocultar</x-jet-button>
         <select wire:model="per_page">
@@ -105,7 +105,7 @@
                                         @endforeach
                                     @elseif($product->subcategory->color)
                                         @foreach($product->colors as $colors)
-                                            {{$colors->name}}
+                                            {{__(ucfirst($colors->name))}}
                                         @endforeach
                                     @else
                                         No tiene color
@@ -114,7 +114,7 @@
                         @endif
                             @if(in_array('Stock',$columnaCheck))
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{$product->stock}}</div>
+                                    <div class="text-sm text-gray-900">{{$product->stock ?: "No tiene stock"}}</div>
                                 </td>
                             @endif
                         @if(in_array('Estado',$columnaCheck))

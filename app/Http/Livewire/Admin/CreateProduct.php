@@ -67,7 +67,6 @@ class CreateProduct extends Component
         })->get();
         $this->reset(['subcategory_id','brand_id']);
     }
-
     public function getSubcategoryProperty() // propiedad computada al realizar $this->subcategory, nos devuelve el valor del return
     {
         return Subcategory::find($this->subcategory_id);

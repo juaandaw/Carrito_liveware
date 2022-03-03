@@ -27,16 +27,6 @@ class ShowFilters extends Component
     public $color_id;
     public $brand_id;
     public $search;
-    protected $rules = [
-        'selCategoria' => 'filled',
-        'subcategory_id' => 'filled',
-        'brand_id' => 'filled',
-        'color_id' => 'filled',
-        'priceFrom' => 'filled',
-        'priceTo' => 'filled',
-        'from' => 'filled',
-        'to' => 'filled',
-    ];
 
 
 
@@ -48,9 +38,7 @@ class ShowFilters extends Component
 
     public function mount()
     {
-        $this->categorias = Category::all();
-        $this->brands = Brand::all();
-        $this->colors = Color::all();
+
     }
 
     public function mostrar()
@@ -65,17 +53,6 @@ class ShowFilters extends Component
 
     public function filters()
     {
-
-        if($this->selCategoria == "Elige una categoria"){
-            $this->selCategoria = null;
-        }elseif($this->brand_id == "Elige una marca"){
-            $this->brand_id = null;
-        }elseif($this->color_id == "Elige un color"){
-            $this->color_id = null;
-        }
-        $this->validate();
-
-
         $this->emitTo('show-products2','filters',$this->selCategoria,
             $this->subcategory_id,
             $this->brand_id,

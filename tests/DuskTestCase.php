@@ -2,11 +2,18 @@
 
 namespace Tests;
 
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Image;
+use App\Models\Product;
+use App\Models\Subcategory;
+use App\Models\User;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Illuminate\Support\Str;
 use Laravel\Dusk\TestCase as BaseTestCase;
-
+use Illuminate\Database\Eloquent\Factories\Factory;
 abstract class DuskTestCase extends BaseTestCase
 {
     use CreatesApplication;
@@ -31,21 +38,24 @@ abstract class DuskTestCase extends BaseTestCase
      */
     protected function driver()
     {
+
         $options = (new ChromeOptions)->addArguments(collect([
-            '--window-size=1920,1080',
+            '—window-size=1920,1080',
         ])->unless($this->hasHeadlessDisabled(), function ($items) {
             return $items->merge([
-                '--disable-gpu',
-                '--headless',
-                '--no-sandbox'
+                "start-maximized",
+                'headless',
+                'disable-gpu',
+                '-no-sandbox',
+                '--disable-dev-shm-usage',
+                '--window-size=1920,1080',
             ]);
         })->all());
 
         return RemoteWebDriver::create(
-            $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515',
-            DesiredCapabilities::chrome()->setCapability(
-                ChromeOptions::CAPABILITY, $options
-            )
+            $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
+            ChromeOptions::CAPABILITY, $options
+        )
         );
     }
 
@@ -57,6 +67,6 @@ abstract class DuskTestCase extends BaseTestCase
     protected function hasHeadlessDisabled()
     {
         return isset($_SERVER['DUSK_HEADLESS_DISABLED']) ||
-               isset($_ENV['DUSK_HEADLESS_DISABLED']);
+            isset($_ENV['DUSK_HEADLESS_DISABLED']);
     }
 }

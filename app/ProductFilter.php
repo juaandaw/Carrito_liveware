@@ -12,14 +12,15 @@ class ProductFilter extends QueryFilter
     {
         return [
             'search' => 'filled',
-            'category_id' => 'exists:categories,id',
-            'subcategory_id' => 'exists:subcategories,id',
-            'brand_id' => 'exists:brands,id',
-            'color_id' => 'exists:colors,id',
+            'category' => 'exists:categories,id',
+            'subcategory' => 'exists:subcategories,id',
+            'brand' => 'exists:brands,id',
+            'color' => 'exists:colors,id',
+            'size' => 'exists:sizes,name',
             'from' => 'filled|date_format:Y-m-d',
             'to' => 'filled|date_format:Y-m-d',
-            'priceFrom' => 'filled',
-            'priceTo' => 'filled',
+            'priceFrom' => 'filled|numeric',
+            'priceTo' => 'filled|numeric',
         ];
     }
 
@@ -28,6 +29,49 @@ class ProductFilter extends QueryFilter
         return $query->where(function($query) use ($search) {
                     $query->where('name', 'LIKE', "%{$search}%");
                 });
+    }
+
+    public function category($query,$category_id)
+    {
+                    $query->whereHas('subcategory.category',function ($query)use($category_id){
+                        $query->where('id',$category_id);
+                    });
+    }
+
+    public function subcategory($query,$subcategory_id)
+    {
+        $query->where('subcategory_id',$subcategory_id);
+    }
+
+    public function brand($query,$brand_id)
+    {
+        $query->where('brand_id',$brand_id);
+    }
+
+    public function color($query,$color)
+    {
+        $query->whereHas('colors',function ($query) use($color){
+            $query->where('color_id',$color);
+        })->orWhereHas('sizes.colors',function ($query) use($color){
+            $query->where('color_id',$color);
+        });
+    }
+
+    public function size($query,$size)
+    {
+        $query->whereHas('sizes',function ($query)use($size){
+           $query->where('name',$size);
+        });
+    }
+
+    public function priceFrom($query,$priceFrom)
+    {
+        $query->where('price', ">=",$priceFrom);
+    }
+
+    public function priceTo($query,$priceTo)
+    {
+        $query->where('price', "<=",$priceTo);
     }
 
     public function from($query, $date)
