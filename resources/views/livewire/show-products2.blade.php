@@ -38,16 +38,95 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider {{in_array('Nombre',$columnaCheck) ? 'block' : 'hidden'}}">Nombre</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Categoria',$columnaCheck) ? 'block' : 'hidden'}}>Categoria</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Subcategoria',$columnaCheck) ? 'block' : 'hidden'}}>Subcategoria</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Marca',$columnaCheck) ? 'block' : 'hidden'}}>Marca</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Fecha de creacion',$columnaCheck) ? 'block' : 'hidden'}}>Fecha de creacion</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Color',$columnaCheck) ? 'block' : 'hidden'}}>Color</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Stock',$columnaCheck) ? 'block' : 'hidden'}}>Stock</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Estado',$columnaCheck) ? 'block' : 'hidden'}}>Estado</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Precio',$columnaCheck) ? 'block' : 'hidden'}}>Precio</th>
-                    <th scope="col" class="relative px-6 py-3">
+                    <th  wire:click="sortBy('name')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider {{in_array('Nombre',$columnaCheck) ? 'block' : 'hidden'}}">
+                        <button>Nombre</button>
+                        @if($sortField == 'Nombre')
+                        @if($sortDirection == 'asc')
+                            <button>&uarr;</button>
+                        @else
+                            <button>&darr;</button>
+                        @endif
+                        @endif
+                    </th>
+                    <th  scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Categoria',$columnaCheck) ? 'block' : 'hidden'}}>
+                        <button>Categoria</button>
+                        @if($sortField == 'Categoria')
+                            @if($sortDirection == 'asc')
+                                <button>&uarr;</button>
+                            @else
+                                <button>&darr;</button>
+                            @endif
+                        @endif
+                    </th>
+                    <th  scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Subcategoria',$columnaCheck) ? 'block' : 'hidden'}}>
+                        <button>Subcategoria</button>
+                        @if($sortField == 'Subcategoria')
+                            @if($sortDirection == 'asc')
+                                <button>&uarr;</button>
+                            @else
+                                <button>&darr;</button>
+                            @endif
+                        @endif
+                    </th>
+                    <th  scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Marca',$columnaCheck) ? 'block' : 'hidden'}}>
+                        <button>Marca</button>
+                        @if($sortField == 'Marca')
+                            @if($sortDirection == 'asc')
+                                <button>&uarr;</button>
+                            @else
+                                <button>&darr;</button>
+                            @endif
+                        @endif
+
+                    </th>
+                    <th  wire:click="sortBy('created_at')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Fecha de creacion',$columnaCheck) ? 'block' : 'hidden'}}>
+                        <button>Fecha de creacion</button>
+                        @if($sortField == 'Fecha de creacion')
+                            @if($sortDirection == 'asc')
+                                <button>&uarr;</button>
+                            @else
+                                <button>&darr;</button>
+                            @endif
+                        @endif
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Color',$columnaCheck) ? 'block' : 'hidden'}}>
+                        <button>Color</button>
+                    </th>
+                    <th  scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Talla',$columnaCheck) ? 'block' : 'hidden'}}>
+                        <button>Talla</button>
+                        @if($sortField == 'Talla')
+                            @if($sortDirection == 'asc')
+                                <button>&uarr;</button>
+                            @else
+                                <button>&darr;</button>
+                            @endif
+                        @endif
+                    </th>
+                    <th  scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Stock',$columnaCheck) ? 'block' : 'hidden'}}>
+                        <button>Stock</button>
+                    </th>
+                    <th  wire:click="sortBy('status')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Estado',$columnaCheck) ? 'block' : 'hidden'}}>
+                        <button>Estado</button>
+                        @if($sortField == 'Estado')
+                            @if($sortDirection == 'asc')
+                                <button>&uarr;</button>
+                            @else
+                                <button>&darr;</button>
+                            @endif
+                        @endif
+                    </th>
+                    <th  wire:click="sortBy('price')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Precio',$columnaCheck) ? 'block' : 'hidden'}}>
+                        <button>Precio</button>
+                        @if($sortField == 'Precio')
+                            @if($sortDirection == 'asc')
+                                <button>&uarr;</button>
+                            @else
+                                <button>&darr;</button>
+                            @endif
+                        @endif
+                    </th>
+
+                    <th  class="relative px-6 py-3">
                         <span class="sr-only">Editar</span>
                     </th>
                 </tr>
@@ -94,9 +173,6 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     @if($product->subcategory->size && $product->subcategory->color)
                                         @foreach($product->sizes as $size)
-                                            <div class="font-bold">
-                                            {{$size->name}}
-                                            </div>
                                             @foreach($size->colors as $color)
                                                 <div>
                                                     {{__(ucfirst($color->name))}}
@@ -105,13 +181,26 @@
                                         @endforeach
                                     @elseif($product->subcategory->color)
                                         @foreach($product->colors as $colors)
-                                            {{__(ucfirst($colors->name))}}
+                                            <div>
+                                                {{__(ucfirst($colors->name))}}
+                                            </div>
                                         @endforeach
                                     @else
                                         No tiene color
                                     @endif
                                 </td>
                         @endif
+                            @if(in_array('Talla',$columnaCheck))
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              @if($product->subcategory->size)
+                                  @foreach($product->sizes as $size)
+                                      <div>
+                                          {{$size->name}}
+                                      </div>
+                                  @endforeach
+                            </td>
+                            @endif
+                             @endif
                             @if(in_array('Stock',$columnaCheck))
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">{{$product->stock ?: "No tiene stock"}}</div>

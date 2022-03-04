@@ -29,8 +29,10 @@ class ShowProducts2 extends Component
     public $priceTo;
     public $to;
     public $from;
+    public $sortField = 'created_at';
+    public $sortDirection = 'desc';
     public $mostrar = false;
-    public $columnas = ['Nombre','Categoria','Subcategoria','Marca','Fecha de creacion','Color','Stock','Estado','Precio'];
+    public $columnas = ['Nombre','Categoria','Subcategoria','Marca','Fecha de creacion','Color','Talla','Stock','Estado','Precio'];
     public $columnaCheck = [];
     protected $listeners = ['filters'];
     protected $queryString = [
@@ -43,7 +45,7 @@ class ShowProducts2 extends Component
         'priceFrom' => ['except' => ''],
         'priceTo' => ['except' => ''],
         'from' => ['except' => ''],
-        'to' => ['except' => '']
+        'to' => ['except' => ''],
     ];
 
     public function mount()
@@ -82,13 +84,18 @@ class ShowProducts2 extends Component
 
                 ]
             ))
-            ->orderByDesc('created_at')
-            ->paginate($this->per_page);;
-
+            ->orderBy($this->sortField,$this->sortDirection)
+            ->paginate($this->per_page);
 
         $products->appends($productFilter->valid());
 
         return $products;
+    }
+
+    public function sortBy($field)
+    {
+        $this->sortField = $field;
+        $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
     }
 
     public function updatedCategoryId($value)
@@ -99,6 +106,37 @@ class ShowProducts2 extends Component
         })->get();
 
         $this->reset(['subcategory_id','brand_id']);
+        $this->resetPage();
+    }
+
+    public function updatedSubcategoryId()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedBrandId()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedFrom()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedTo()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedColorId()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedSizeId()
+    {
+        $this->resetPage();
     }
 
     public function updatedpriceFrom()
@@ -106,15 +144,16 @@ class ShowProducts2 extends Component
         $this->resetPage();
     }
 
+    public function updatedPriceTo()
+    {
+        $this->resetPage();
+    }
+
+
     public function mostrarOcultar()
     {
         $this->mostrar = true;
 
-    }
-
-    public function updatedSubcategoryid()
-    {
-        $this->resetPage();
     }
 
     public function updatingPerPage()

@@ -34,13 +34,13 @@ class ProductFilter extends QueryFilter
     public function category($query,$category_id)
     {
                     $query->whereHas('subcategory.category',function ($query)use($category_id){
-                        $query->where('id',$category_id);
+                        $query->where('categories.id',$category_id);
                     });
     }
 
     public function subcategory($query,$subcategory_id)
     {
-        $query->where('subcategory_id',$subcategory_id);
+        $query->where('products.subcategory_id',$subcategory_id);
     }
 
     public function brand($query,$brand_id)
