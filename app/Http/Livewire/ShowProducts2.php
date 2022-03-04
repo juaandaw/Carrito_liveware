@@ -24,6 +24,7 @@ class ShowProducts2 extends Component
     public $sizes;
     public $size_name;
     public $color_id;
+    public $color_id_size;
     public $brand_id;
     public $priceFrom;
     public $priceTo;
@@ -40,6 +41,7 @@ class ShowProducts2 extends Component
         'category_id' => ['except' => 'all'],
         'subcategory_id' => ['except' => 'all'],
         'color_id' => ['except' => 'all'],
+        'color_id_size' => ['except' => 'all'],
         'brand_id' => ['except' => 'all'],
         'size_name' => ['except' => 'all'],
         'priceFrom' => ['except' => ''],
@@ -76,6 +78,7 @@ class ShowProducts2 extends Component
                     'subcategory' => $this->subcategory_id,
                     'brand' => $this->brand_id,
                     'color' => $this->color_id,
+                    'colorta' => $this->color_id_size,
                     'size' => $this->size_name,
                     'priceFrom' => $this->priceFrom,
                     'priceTo' => $this->priceTo,
@@ -84,6 +87,10 @@ class ShowProducts2 extends Component
 
                 ]
             ))
+            ->join('subcategories','subcategories.id','products.subcategory_id')
+            ->join('categories','categories.id','subcategories.category_id')
+            ->join('brands','brands.id','products.brand_id')
+            ->select('products.*')
             ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->per_page);
 
@@ -131,6 +138,8 @@ class ShowProducts2 extends Component
 
     public function updatedColorId()
     {
+
+
         $this->resetPage();
     }
 

@@ -16,6 +16,7 @@ class ProductFilter extends QueryFilter
             'subcategory' => 'exists:subcategories,id',
             'brand' => 'exists:brands,id',
             'color' => 'exists:colors,id',
+            'colorta' => 'exists:color_size,id',
             'size' => 'exists:sizes,name',
             'from' => 'filled|date_format:Y-m-d',
             'to' => 'filled|date_format:Y-m-d',
@@ -27,7 +28,7 @@ class ProductFilter extends QueryFilter
     public function search($query, $search)
     {
         return $query->where(function($query) use ($search) {
-                    $query->where('name', 'LIKE', "%{$search}%");
+                    $query->where('products.name', 'LIKE', "%{$search}%");
                 });
     }
 
@@ -52,8 +53,13 @@ class ProductFilter extends QueryFilter
     {
         $query->whereHas('colors',function ($query) use($color){
             $query->where('color_id',$color);
-        })->orWhereHas('sizes.colors',function ($query) use($color){
-            $query->where('color_id',$color);
+        });
+    }
+
+    public function colorta($query,$color_id)
+    {
+        $query->whereHas('sizes.colors',function ($query)use($color_id){
+            $query->where('color_id',$color_id);
         });
     }
 

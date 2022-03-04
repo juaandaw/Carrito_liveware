@@ -30,12 +30,18 @@
                     <option value="{{$color->id}}">{{__(ucfirst($color->name))}}</option>
                 @endforeach
             </select>
-            <select wire:model="size_name">
-                <option value="all" selected>Elige una talla</option>
-                @foreach($sizes as $size)
-                    <option value="{{$size->name}}">{{$size->name}}</option>
-                @endforeach
-            </select>
+                <select wire:model="color_id_size">
+                    <option value="all" selected>Elige un color de una talla</option>
+                    @foreach($colors as $color)
+                        <option value="{{$color->id}}">{{__(ucfirst($color->name))}}</option>
+                    @endforeach
+                </select>
+                <select wire:model="size_name">
+                    <option value="all" selected>Elige una talla</option>
+                    @foreach($sizes as $size)
+                        <option value="{{$size->name}}">{{$size->name}}</option>
+                    @endforeach
+                </select>
         </div>
         <label  for="desde">Precio Desde €</label>
         <input wire:model="priceFrom" class="w-32" type="text" value="">

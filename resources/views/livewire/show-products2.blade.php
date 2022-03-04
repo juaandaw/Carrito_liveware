@@ -48,7 +48,7 @@
                         @endif
                         @endif
                     </th>
-                    <th  scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Categoria',$columnaCheck) ? 'block' : 'hidden'}}>
+                    <th  wire:click="sortBy('categories.name')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Categoria',$columnaCheck) ? 'block' : 'hidden'}}>
                         <button>Categoria</button>
                         @if($sortField == 'Categoria')
                             @if($sortDirection == 'asc')
@@ -58,7 +58,7 @@
                             @endif
                         @endif
                     </th>
-                    <th  scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Subcategoria',$columnaCheck) ? 'block' : 'hidden'}}>
+                    <th  wire:click="sortBy('subcategories.name')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Subcategoria',$columnaCheck) ? 'block' : 'hidden'}}>
                         <button>Subcategoria</button>
                         @if($sortField == 'Subcategoria')
                             @if($sortDirection == 'asc')
@@ -68,7 +68,7 @@
                             @endif
                         @endif
                     </th>
-                    <th  scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Marca',$columnaCheck) ? 'block' : 'hidden'}}>
+                    <th  wire:click="sortBy('brands.id')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Marca',$columnaCheck) ? 'block' : 'hidden'}}>
                         <button>Marca</button>
                         @if($sortField == 'Marca')
                             @if($sortDirection == 'asc')
@@ -91,16 +91,16 @@
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Color',$columnaCheck) ? 'block' : 'hidden'}}>
                         <button>Color</button>
-                    </th>
-                    <th  scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Talla',$columnaCheck) ? 'block' : 'hidden'}}>
-                        <button>Talla</button>
-                        @if($sortField == 'Talla')
+                        @if($sortField == 'Color')
                             @if($sortDirection == 'asc')
                                 <button>&uarr;</button>
                             @else
                                 <button>&darr;</button>
                             @endif
                         @endif
+                    </th>
+                    <th  scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Talla',$columnaCheck) ? 'block' : 'hidden'}}>
+                        <button>Talla</button>
                     </th>
                     <th  scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {{in_array('Stock',$columnaCheck) ? 'block' : 'hidden'}}>
                         <button>Stock</button>
