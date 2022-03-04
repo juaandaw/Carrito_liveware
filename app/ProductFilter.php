@@ -84,13 +84,13 @@ class ProductFilter extends QueryFilter
     {
         $date = Carbon::createFromFormat('Y-m-d', $date);
 
-        $query->whereDate('created_at', '>=', $date);
+        $query->whereDate('products.created_at', '>=', $date);
     }
 
     public function to($query, $date)
     {
         $date = Carbon::createFromFormat('Y-m-d', $date);
 
-        $query->whereDate('created_at', '<=', $date);
+        $query->whereDate('products.created_at', '<=', $date);
     }
 }

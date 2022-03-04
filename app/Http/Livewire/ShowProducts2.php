@@ -52,7 +52,7 @@ class ShowProducts2 extends Component
 
     public function mount()
     {
-        $this->reset(['category_id','subcategory_id','brand_id','color_id','size_name','from','to','priceFrom','priceTo']);
+        $this->reset(['category_id','subcategory_id','brand_id','color_id','size_name','from','to','priceFrom','priceTo','color_id_size']);
         $this->categorias = Category::all();
         $this->brands = Brand::all();
         $this->colors = Color::all();
@@ -140,6 +140,11 @@ class ShowProducts2 extends Component
     {
 
 
+        $this->resetPage();
+    }
+
+    public function updatedColorIdSize()
+    {
         $this->resetPage();
     }
 
